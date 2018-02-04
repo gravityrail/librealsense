@@ -31,7 +31,11 @@ $ brew install --with-toolchain llvm
 $ brew link --force llvm
 ```
 
-Copy the toolchain folder from `/usr/local/Toolchains` to `/Library/Developer/Toolchains`.
+Link the toolchain to Xcode's Toolchains directory (exact name may vary depending on your LLVM version):
+
+```bash
+sudo ln -s /usr/local/Cellar/llvm/5.0.1/Toolchains/LLVM5.0.1.xctoolchain /Applications/Xcode.app/Contents/Developer/Toolchains/LLVM5.0.1.xctoolchain
+```
 
 Then regenerate the Xcode projects using the command above, but with `-DBUILD_WITH_OPENMP=true`:
 
