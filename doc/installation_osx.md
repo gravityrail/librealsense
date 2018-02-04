@@ -21,3 +21,22 @@
 
 ## What are the known issues?
 * Changing configurations will often result in a crash or the new configuration not being applied (WIP)
+
+## Compiling with OpenMP
+
+To gain the extra performance benefits of OpenMP, you must use the [homebrew](https://brew.sh/) version of `llvm`.
+
+```bash
+$ brew install --with-toolchain llvm
+$ brew link --force llvm
+```
+
+Copy the toolchain folder from `/usr/local/Toolchains` to `/Library/Developer/Toolchains`.
+
+Then regenerate the Xcode projects using the command above, but with `-DBUILD_WITH_OPENMP=true`:
+
+```bash
+$ cmake .. -DBUILD_EXAMPLES=true -DBUILD_WITH_OPENMP=true -DHWM_OVER_XU=false -G Xcode
+```
+
+Restart Xcode and select the Toolchain from the Xcode menu.
